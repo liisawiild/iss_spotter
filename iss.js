@@ -8,12 +8,12 @@
  */
 const request = require('request');
 
-const fetchMyIP = function(callback) { 
+const fetchMyIP = function(callback) {
   request('https://api.ipify.org/?format=json', (error, response, body) => {
     if (error) {
       callback(error, null);
       return;
-    } 
+    }
     
     if (response.statusCode !== 200) {
       const msg = `Status Code ${response.statusCode} when fetching IP. REsponse ${body}`;
@@ -21,12 +21,12 @@ const fetchMyIP = function(callback) {
       return;
     }
     
-          let ipObj = JSON.parse(body);
-      let ipAddress = ipObj.ip;
-      callback(null, ipAddress)
+    let ipObj = JSON.parse(body);
+    let ipAddress = ipObj.ip;
+    callback(null, ipAddress);
     
     
-  })
-}
+  });
+};
 
 module.exports = { fetchMyIP };
