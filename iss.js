@@ -30,19 +30,30 @@ const fetchMyIP = function(callback) {
 };
 
 const fetchCoordsByIP = function(ipAddress, callback) {
-  request(`https://ipwho.is/${ipAddress}`, (error, response, body) => {
-    let bodyObj = JSON.parse(body);
-    let long = bodyObj.longitude;
-    let lat = bodyObj.latitude;
-    
-    let data = {
-      long,
-      lat,
+  request(`https://ipwho.is/42`, (error, response, body) => {
+    if (error) {
+      callback(null, error);
+      return;
     }
 
-    callback(null, data);
-    
-  })
+    let bodyObj = JSON.parse(body);
+
+    if (bodyObj.success === false) {
+      let ipErrorMsg = `The success status was "${bodyObj.success}", and the message was "${bodyObj.message}" when searching for this IP: ${bodyObj.ip}.`;
+      callback(null, ipErrorMsg);
+    } else {
+      let long = bodyObj.longitude;
+      let lat = bodyObj.latitude;
+      
+      let data = {
+        long,
+        lat,
+      }
+  
+      callback(null, data);
+
+    }
+  });
 };
 
 

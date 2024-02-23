@@ -9,7 +9,7 @@ fetchMyIP((error, ip) => {
   console.log('It worked! Returned IP:' , ip);
 });
 
-fetchCoordsByIP('64.180.44.26', (error, data) => {
+fetchCoordsByIP('64.180.44.26') => {
   console.log(error);
   console.log(data);
 });
