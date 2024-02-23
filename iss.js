@@ -48,14 +48,12 @@ const fetchCoordsByIP = function(ipAddress, callback) {
       let data = {
         long,
         lat,
-      }
+      };
   
       callback(null, data);
 
     }
   });
 };
-
-
 
 module.exports = { fetchMyIP, fetchCoordsByIP };
