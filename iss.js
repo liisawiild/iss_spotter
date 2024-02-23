@@ -16,7 +16,7 @@ const fetchMyIP = function(callback) {
     }
     
     if (response.statusCode !== 200) {
-      const msg = `Status Code ${response.statusCode} when fetching IP. REsponse ${body}`;
+      const msg = `Status Code ${response.statusCode} when fetching IP. Response ${body}`;
       callback(Error(msg), null);
       return;
     }
@@ -30,7 +30,19 @@ const fetchMyIP = function(callback) {
 };
 
 const fetchCoordsByIP = function(ipAddress, callback) {
+  request(`https://ipwho.is/${ipAddress}`, (error, response, body) => {
+    let bodyObj = JSON.parse(body);
+    let long = bodyObj.longitude;
+    let lat = bodyObj.latitude;
+    
+    let data = {
+      long,
+      lat,
+    }
 
+    callback(null, data);
+    
+  })
 };
 
 
