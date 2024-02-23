@@ -31,16 +31,15 @@ const { nextISSTimesForMyLocation } = require('./iss');
 
 const printPassTimes = function(passTimes) {
   for (let appearance of passTimes) {
-    // console.log(appearance.risetime);
-    let date = new Date(appearance.risetime).toString();
+    const date = new Date(appearance.risetime * 1000).toString();
+    // console.log(date);
     console.log(`Next pass at ${date} for ${appearance.duration} seconds`);
-  }
-
-}
+  }  
+};
 
 
 nextISSTimesForMyLocation((error, passTimes) =>{
-  if (error) {
+  if (error) { 
     return console.log("It didn't work!", error);
   }
 
