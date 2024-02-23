@@ -5,7 +5,8 @@ const fetchMyIP = function() {
 };
 
 const fetchCoordsByIP = function (body) {
-
-
+  let ipAddress = JSON.parse(body).ip;
+  return request(`https://ipwho.is/${ipAddress}`);
 };
+
 module.exports = { fetchMyIP, fetchCoordsByIP };
